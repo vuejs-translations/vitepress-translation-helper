@@ -1,0 +1,43 @@
+{
+  "name": "vitepress-translation-helper",
+  "version": "1.0.0",
+  "description": "A translation toolkit for VitePress, made by vuejs-translations.",
+  "bin": {
+    "v-translation": "./bin/v-translation.mjs"
+  },
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./v-translation": "./lib/index.js",
+    "./TranslationStatus": "./lib/TranslationStatus.vue.js"
+  },
+  "files": [
+    "tsconfig.json",
+    "bin/*",
+    "lib/*",
+    "README.md"
+  ],
+  "scripts": {
+    "build:ts": "tsc",
+    "build:ui": "node scripts/compile-ui.mjs",
+    "build": "pnpm run build:ts && pnpm run build:ui"
+  },
+  "keywords": ["vitepress", "translation", "helper"],
+  "author": "Jinjiang <zhaojinjiang@me.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.8",
+    "typescript": "^5.3.3",
+    "vitepress": "1.0.0-rc.36",
+    "vue": "^3.4.8",
+    "vue-simple-compiler": "^0.0.6"
+  },
+  "peerDependencies": {
+    "vitepress": "1.0.0-rc.36",
+    "vue": "^3.4.8"
+  },
+  "dependencies": {
+    "minimist": "^1.2.8",
+    "simple-git": "^3.22.0"
+  }
+}
