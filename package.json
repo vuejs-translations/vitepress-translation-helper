@@ -6,15 +6,11 @@
     "v-translation": "./bin/v-translation.mjs"
   },
   "main": "./lib/index.js",
-  "exports": {
-    ".": "./lib/index.js",
-    "./v-translation": "./lib/index.js",
-    "./TranslationStatus": "./lib/TranslationStatus.vue.js"
-  },
   "files": [
     "tsconfig.json",
     "bin/*",
     "lib/*",
+    "ui/*",
     "README.md"
   ],
   "scripts": {

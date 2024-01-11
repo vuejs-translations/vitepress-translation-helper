@@ -1,11 +1,13 @@
 import { readFile, writeFile, mkdir } from 'fs/promises'
 import { compile } from 'vue-simple-compiler'
 
+const distDir = './ui'
+
 async function outputFile(file) {
   const { filename, code, sourceMap } = file
-  await writeFile(`./lib/${filename}`, code)
-  await addSoureMapComment(`./lib/${filename}`, `${filename}.map`)
-  await writeSourceMap(`./lib/${filename}.map`, sourceMap)
+  await writeFile(`${distDir}/${filename}`, code)
+  await addSoureMapComment(`${distDir}/${filename}`, `${filename}.map`)
+  await writeSourceMap(`${distDir}/${filename}.map`, sourceMap)
 }
 
 async function ensureDir(dir) {
@@ -32,7 +34,9 @@ async function writeSourceMap(filepath, sourceMap) {
 }
 
 async function addSoureMapComment(filepath, mapFilepath) {
-  const sourceMapComment = filepath.endsWith('.css') ? `/*# sourceMappingURL=${mapFilepath} */` : `//# sourceMappingURL=${mapFilepath}`
+  const sourceMapComment = filepath.endsWith('.css')
+    ? `/*# sourceMappingURL=${mapFilepath} */`
+    : `//# sourceMappingURL=${mapFilepath}`
   const content = await readFile(filepath, 'utf-8')
   await writeFile(filepath, `${content}\n${sourceMapComment}`)
 }
@@ -52,7 +56,7 @@ async function main() {
     process.exit(1)
   }
 
-  await ensureDir('./lib')
+  await ensureDir(distDir)
   await outputFile(js)
   await Promise.all(css.map(outputFile))
 
