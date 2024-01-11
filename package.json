@@ -1,6 +1,6 @@
 {
   "name": "vitepress-translation-helper",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A translation toolkit for VitePress, made by vuejs-translations.",
   "bin": {
     "v-translation": "./bin/v-translation.mjs"
@@ -18,7 +18,11 @@
     "build:ui": "node scripts/compile-ui.mjs",
     "build": "pnpm run build:ts && pnpm run build:ui"
   },
-  "keywords": ["vitepress", "translation", "helper"],
+  "keywords": [
+    "vitepress",
+    "translation",
+    "helper"
+  ],
   "author": "Jinjiang <zhaojinjiang@me.com>",
   "license": "MIT",
   "devDependencies": {
