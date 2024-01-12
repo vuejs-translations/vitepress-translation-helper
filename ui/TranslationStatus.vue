@@ -11,7 +11,6 @@ const defaultI18nLabels: {
   [lang: string]: string
 } = {
   en: 'The translation is synced to the docs on ${date} of which the commit hash is <code>${hash}</code>.',
-  zh: '该翻译已同步到了 ${date} 的版本，其对应的 commit hash 是 <code>${hash}</code>。',
 }
 </script>
 
@@ -40,9 +39,14 @@ const label = computed<string>(() => {
     return ''
   }
   const { date, hash } = status[localeIndex]
-  return (i18nLabels[localeIndex] || i18nLabels.en)
-    .replace('${date}', `<time>${date}</time>`)
-    .replace('${hash}', `<code>${hash.substring(0, 7)}</code>`)
+  return (
+    i18nLabels[localeIndex] ||
+    defaultI18nLabels[localeIndex] ||
+    i18nLabels.en ||
+    defaultI18nLabels.en
+  ).
+    replace('${date}', `<time>${date}</time>`).
+    replace('${hash}', `<code>${hash.substring(0, 7)}</code>`)
 })
 </script>
 
