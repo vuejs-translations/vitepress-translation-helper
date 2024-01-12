@@ -2,6 +2,13 @@
   "name": "vitepress-translation-helper",
   "version": "0.1.2",
   "description": "A translation toolkit for VitePress, made by vuejs-translations.",
+  "keywords": [
+    "vitepress",
+    "translation",
+    "helper"
+  ],
+  "author": "Jinjiang <zhaojinjiang@me.com>",
+  "license": "MIT",
   "bin": {
     "v-translation": "./bin/v-translation.mjs"
   },
@@ -13,16 +20,17 @@
     "ui/*",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vuejs-translations/vitepress-translation-helper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vuejs-translations/vitepress-translation-helper/issues"
+  },
+  "homepage": "https://github.com/vuejs-translations/vitepress-translation-helper#readme",
   "scripts": {
     "build": "tsc"
   },
-  "keywords": [
-    "vitepress",
-    "translation",
-    "helper"
-  ],
-  "author": "Jinjiang <zhaojinjiang@me.com>",
-  "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.10.8",
     "typescript": "^5.3.3",
