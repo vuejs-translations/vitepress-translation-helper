@@ -1,6 +1,6 @@
 {
   "name": "vitepress-translation-helper",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A translation toolkit for VitePress, made by vuejs-translations.",
   "keywords": [
     "vitepress",
