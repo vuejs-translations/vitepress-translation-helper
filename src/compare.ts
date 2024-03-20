@@ -19,7 +19,8 @@ async function getLocaleHash (
 export async function compare (
   locale: string | undefined,
   commit: string = 'main',
-  statusFile: string = defaultStatusFile
+  statusFile: string = defaultStatusFile,
+  paths: string[] = []
 ) {
   if (!locale) {
     console.log('Please specify a locale to compare.')
