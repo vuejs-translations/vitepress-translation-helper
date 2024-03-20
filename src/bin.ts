@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import minimist from 'minimist';
 
-import { defaultStatusFile, status, compare, update } from '../lib/index.js'
+import { defaultStatusFile, status, compare, update } from './index'
 
 const helpMessage = `
 This is vitepress translation helper!
