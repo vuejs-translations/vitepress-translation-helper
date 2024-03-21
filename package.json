@@ -10,7 +10,7 @@
   "author": "Jinjiang <zhaojinjiang@me.com>",
   "license": "MIT",
   "bin": {
-    "v-translation": "./bin/v-translation.mjs"
+    "v-translation": "./lib/bin.js"
   },
   "main": "./lib/index.js",
   "files": [
@@ -29,9 +29,11 @@
   },
   "homepage": "https://github.com/vuejs-translations/vitepress-translation-helper#readme",
   "scripts": {
+    "dev": "tsc -w",
     "build": "tsc"
   },
   "devDependencies": {
+    "@types/minimist": "^1.2.5",
     "@types/node": "^20.10.8",
     "typescript": "^5.3.3",
     "vitepress": "1.0.0-rc.36",
