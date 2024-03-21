@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/vuejs-translations/vitepress-translation-helper#readme",
   "scripts": {
+    "dev": "tsc -w",
     "build": "tsc"
   },
   "devDependencies": {
