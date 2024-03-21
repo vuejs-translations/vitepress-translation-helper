@@ -1,5 +1,8 @@
 #!/usr/bin/env node
+
+import { existsSync } from 'fs';
 import minimist from 'minimist';
+import simpleGit from 'simple-git'
 
 import { defaultStatusFile, status, compare, update } from './index'
 
@@ -46,9 +49,9 @@ Examples:
 
 const help = () => console.log(helpMessage)
 
-const main = () => {
+const main = async () => {
   const argv = minimist(process.argv.slice(2))
-  const commit = argv['comment'] || argv.c
+  const commit = argv['commit'] || argv.c
   const statusFile = argv['status-file'] || argv.s
 
   if (argv.v || argv.version) {
@@ -71,13 +74,27 @@ const main = () => {
 
   if (command === 'compare') {
     const [locale, ...paths] = argv._.slice(1)
+    const maybeCommit = paths[0]
+    if (maybeCommit && !commit && !existsSync(maybeCommit)) {
+      const git = simpleGit()
+      try {
+        await git.catFile(['-e', maybeCommit])
+        console.warn(`Deprecated: The path '${maybeCommit}' looks like a commit. Please use --comment to specify the target commit.`)
+        compare(locale, maybeCommit, statusFile, paths.slice(1))
+        return
+      } catch (err) {
+      }
+    }
     compare(locale, commit, statusFile, paths)
     return
   }
 
   if (command === 'update') {
-    const [locale] = argv._.slice(1)
-    update(locale, commit, statusFile)
+    const [locale, maybeCommit] = argv._.slice(1)
+    if (maybeCommit && !commit) {
+      console.warn('Deprecated: Please use --comment to specify the target commit.')
+    }
+    update(locale, commit || maybeCommit, statusFile)
     return
   }
 
