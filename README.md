@@ -9,22 +9,22 @@ A translation toolkit for VitePress, made by vuejs-translations.
 ```bash
 Usage:
   v-translation status [<locale>] [--status-file=<file-path>]
-  v-translation compare <locale> [<path>...] [--comment=<commit>] [--status-file=<file-path>]
-  v-translation update <locale> [--comment=<commit>] [--status-file=<file-path>]
+  v-translation compare <locale> [<commit>] [--status-file=<file-path>] [--path=<diff-path>]
+  v-translation update <locale> [<commit>] [--status-file=<file-path>]
   v-translation --help
   v-translation --version
 
 Arguments:
   locale: The target locale to check/compare/update.
-  path: The target files/directories to compare. Default to the whole repository.
+  commit: The target commit to compare/update. It could be a branch, a tag, or a hash. Default to 'main'.
 
 Options:
   -s, 
   --status-file:
     The path to the translation status file. Default to './.vitepress/translation-status.json'.
-  -c,
-  --comment:
-    The target commit to compare/update. It could be a branch, a tag, or a hash. Default to 'main'.
+  -p,
+  --path:
+    The target files/directories to compare. You can set multiple paths if you like. Default to the whole repository.
   -h,
   --help:
     Print this help message.
@@ -36,13 +36,13 @@ Examples:
   v-translation status
   v-translation status zh
   v-translation compare zh
-  v-translation compare zh --comment=main
-  v-translation compare zh --comment=1cf14f8
-  v-translation compare zh docs/guide docs/api
-  v-translation compare zh docs/guide docs/api --comment=main
+  v-translation compare zh main
+  v-translation compare zh 1cf14f8
+  v-translation compare zh --path=docs
+  v-translation compare zh main --path=docs/guide --path=docs/api
   v-translation update zh
-  v-translation update zh --comment=main
-  v-translation update zh --comment=1cf14f8
+  v-translation update zh main
+  v-translation update zh 1cf14f8
 ```
 
 ### 2. Translation Status UI
