@@ -20,7 +20,7 @@ export async function compare (
   locale: string | undefined,
   commit: string = 'main',
   statusFile: string = defaultStatusFile,
-  paths: string[] = []
+  paths: string[] = ['.']
 ) {
   if (!locale) {
     console.log('Please specify a locale to compare.')
@@ -30,7 +30,7 @@ export async function compare (
   if (hash) {
     console.log(`The last checkpoint of docs(${locale}) is "${hash}".\n`)
     const git = simpleGit()
-    const result = await git.diff([`${hash}..${commit}`, '.'])
+    const result = await git.diff([`${hash}..${commit}`, ...paths])
     console.log(result)
   } else {
     console.log(`No docs(${locale}) checkpoint found.\n`)
