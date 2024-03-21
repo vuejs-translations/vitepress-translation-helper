@@ -3,10 +3,13 @@ import simpleGit from 'simple-git'
 
 import { Status, defaultStatusFile } from './shared'
 
+// to override %H into %h to get the abbreviated commit hash
+const GIT_LOG_PRETTY_FORMAT = 'òòòòòò %h ò %aI ò %s ò %D ò %b ò %aN ò %aE òò'
+
 async function getCommitInfo (commit: string) {
   try {
     const git = simpleGit()
-    const log = await git.log([commit, '-n', '1'])
+    const log = await git.log([commit, '-n', '1', `--pretty=format:${GIT_LOG_PRETTY_FORMAT}`])
     const { hash, date } = log.latest!
     return { hash, date: new Date(date).toISOString().substring(0, 10) }
   } catch (err) {
