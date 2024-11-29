@@ -15,32 +15,33 @@ const defaultI18nLabels: {
 </script>
 
 <script setup lang="ts">
-import { computed, type PropType } from 'vue'
+import { computed } from 'vue'
 import { useData } from 'vitepress'
 
-const props = defineProps({
-    i18nLabels: {
-      type: Object as PropType<{ [lang: string]: string }>,
-      default: () => defaultI18nLabels
-    },
-    status: {
-      type: Object as PropType<Status>,
-      default: () => ({})
-    }
-  })
+const props = withDefaults(
+  defineProps<{
+    i18nLabels: { [lang: string]: string }
+    status: Status
+  }>(),
+  {
+    i18nLabels: () => defaultI18nLabels,
+    status: () => ({})
+  }
+)
 
+const { i18nLabels, status } = props
 
 const { site } = useData()
 const label = computed<string>(() => {
   const localeIndex = site.value.localeIndex
-  if (!localeIndex || localeIndex === originalLang || !props.status[localeIndex]) {
+  if (!localeIndex || localeIndex === originalLang || !status[localeIndex]) {
     return ''
   }
-  const { date, hash } = props.status[localeIndex]
+  const { date, hash } = status[localeIndex]
   return (
-    props.i18nLabels[localeIndex] ||
+    i18nLabels[localeIndex] ||
     defaultI18nLabels[localeIndex] ||
-    props.i18nLabels.en ||
+    i18nLabels.en ||
     defaultI18nLabels.en
   ).
     replace('${date}', `<time>${date}</time>`).
