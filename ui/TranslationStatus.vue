@@ -18,10 +18,7 @@ const defaultI18nLabels: {
 import { computed } from 'vue'
 import { useData } from 'vitepress'
 
-const {
-  i18nLabels,
-  status
-} = withDefaults(
+const props = withDefaults(
   defineProps<{
     i18nLabels: { [lang: string]: string }
     status: Status
@@ -31,6 +28,8 @@ const {
     status: () => ({})
   }
 )
+
+const { i18nLabels, status } = props
 
 const { site } = useData()
 const label = computed<string>(() => {
